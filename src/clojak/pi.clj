@@ -18,8 +18,18 @@
     (let [result (calculate-pi-for (:start work) (:num-elements work))]
       (.. this getContext (replyUnsafe (Result. result))))))
 
+(defactor-aot clojak.pi.Worker
+  :on-receive (fn [this work]
+                (let [result (calculate-pi-for (:start work) (:num-elements work))]
+                  (.. this getContext (replyUnsafe (Result. result))))))
+
+; Non-AOT
+;(defn make-workers [n]
+  ;(doall (map (fn [_] (make-actor worker)) (range n))))
+
+; AOT
 (defn make-workers [n]
-  (doall (map (fn [_] (make-actor worker)) (range n))))
+  (doall (map (fn [_]  (make-actor clojak.pi.Worker)) (range n))))
 
 (defactor master [router num-messages num-elements latch]
   [pi          (atom 0.0)

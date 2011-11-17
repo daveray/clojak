@@ -3,4 +3,5 @@
   :dependencies [[org.clojure/clojure "1.2.0"]
                  [org.clojure/clojure-contrib "1.2.0"]
                  [se.scalablesolutions.akka/akka-actor "1.1"]]
-  :repositories {"Akka" "http://akka.io/repository"})
+  :repositories {"Akka" "http://akka.io/repository"}
+  :aot [clojak.pi])

@@ -10,6 +10,18 @@
           (proxy [UntypedActor] []
             ~@body))))))
 
+(defmacro defactor-aot
+  [name & {:keys [on-receive]
+      :or {on-receive '(fn [this msg])}}]
+  `(do
+    (gen-class
+      :name ~(or name (ns-name *ns*))
+      :extends akka.actor.UntypedActor 
+      :prefix "-clojak-actor-")
+
+    (defn ~'-clojak-actor-onReceive [#^akka.actor.UntypedActor this# msg#]
+      (~on-receive this# msg#))))
+
 (defn make-actor [actor & args] 
   (let [actor (if (fn? actor) (apply actor args) actor)]
     (doto (Actors/actorOf actor) .start)))

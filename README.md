@@ -8,6 +8,7 @@ Insanely naive, hacked together in one night example of using Akka from Clojure.
 ## Usage
 
     $ lein deps
+    $ lein compile
     $ lein run -m clojak.pi
 
 ## License
