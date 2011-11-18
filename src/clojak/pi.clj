@@ -8,7 +8,7 @@
 
 (defn calculate-pi-for [start num-elements]
   (reduce 
-    (fn [acc i]
+    (fn [^double acc ^long i]
       (+ acc (/ (* 4.0 (- 1 (* (mod i 2) 2))) (+ (* 2 i) 1))))
     0.0
     (range (* start num-elements) (- (* (inc start) num-elements) 1))))
@@ -71,8 +71,4 @@
 
 (defn -main [& args]
   (calculate 4 10000 10000))
-
-
-
-
 

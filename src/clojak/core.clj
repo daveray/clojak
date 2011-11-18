@@ -19,7 +19,7 @@
       :extends akka.actor.UntypedActor 
       :prefix "-clojak-actor-")
 
-    (defn ~'-clojak-actor-onReceive [#^akka.actor.UntypedActor this# msg#]
+    (defn ~'-clojak-actor-onReceive [^akka.actor.UntypedActor this# msg#]
       (~on-receive this# msg#))))
 
 (defn make-actor [actor & args] 
